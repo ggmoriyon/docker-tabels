@@ -9,7 +9,12 @@ ENV JAVA_MAXMEMORY 256
 
 RUN apt-get update && apt-get install -y wget
 
-RUN wget "http://devit.fundacionctic.org:8081/nexus/service/local/artifact/maven/content?r=snapshots&g=es.ctic.tabels&a=tabels&v=$TABELS_VERSION&e=war" --content-disposition -O /tmp/tabels.war 
+# http://repository.fundacionctic.org/content/groups/public/es/ctic/tabels/tabels/0.6-SNAPSHOT/
+# http://devit.fundacionctic.org:8081/nexus/content/repositories/releases/
+# http://devit.fundacionctic.org:8081/nexus/service/local/artifact/maven/content?r=snapshots&g=es.ctic.tabels&a=tabels&v=$TABELS_VERSION&e=war
+# RUN wget "http://repository.fundacionctic.org/service/local/artifact/maven/content?r=snapshots&g=es.ctic.tabels&a=tabels&v=$TABELS_VERSION&e=war" 
+
+RUN wget "http://repository.fundacionctic.org/content/groups/public/es/ctic/tabels/tabels/$TABELS_VERSION/tabels-0.6-20150521.162627-8.war" --content-disposition -O /tmp/tabels.war 
 # && tar xzf /tmp/sesame.tar.gz -C /opt && ln -s /opt/openrdf-sesame-$TABELS_VERSION /opt/sesame && rm /tmp/sesame.tar.gz
 
 # Remove docs and examples
